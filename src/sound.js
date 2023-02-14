@@ -12,6 +12,7 @@ export const guiControl = {
   bpm: 140,
   count: 27,
   ratio: 2,
+  boxRepeat: 4,
   boxColor: "#ffb5cd",
   textColor: "#fff"
 };
@@ -24,18 +25,19 @@ gui.add(guiControl, 'bpm', 30, 180).name('BPM').step(1).onChange((v) => {
     csound.setControlChannel("gkBPM", Math.floor(v));
   }
 });
-gui.add(guiControl, 'count', 1, 32).name('count').step(1).onChange((v) => {
+gui.add(guiControl, 'count', 1, 32).name('Beat Count').step(1).onChange((v) => {
   if(csound) {
     csound.setControlChannel("gkLimit", Math.floor(v));
   }
 });
-gui.addColor(guiControl, 'boxColor');
-gui.addColor(guiControl, 'textColor');
 gui.add(guiControl, 'ratio', 1, 7).name('FM Ratio').step(.1).onChange((v) => {
   if(csound) {
     csound.setControlChannel("gkRatio", v);
   }
 });
+gui.add(guiControl, 'boxRepeat', 4, 30).name('Box Repeat').step(1);
+gui.addColor(guiControl, 'boxColor').name('Box Color');
+gui.addColor(guiControl, 'textColor').name('Text Color');
 
 
 // ================================================================================

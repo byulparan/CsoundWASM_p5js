@@ -27,27 +27,27 @@
      let time = p5.millis() * 0.001;
 
      p5.background(0);
-     canvas.background(0, 40);
+     canvas.background(0, 50);
 
      pg.clear();
      pg.perspective(45.0, p5.width/ p5.height, .01, 100.0);
-     pg.camera(10.0, -10.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+     pg.camera(0.0, 0.0, 10, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
      pg.noFill();
      pg.strokeWeight(2.);
      pg.stroke(guiControl.boxColor);
-
+     
      pg.rotateX(p5.cos(0.4*time) * p5.TAU);
      pg.rotateY(p5.cos(0.4*time) * p5.TAU);
      pg.rotateZ(p5.cos(0.4*time) * p5.TAU);
-     // pg.rotateY(TAU*.25);
 
-     let size = csoundChannel.mix * 10;
+     let size = csoundChannel.mix * 2;
 
-     pg.sphere(size);
-
-     for(let i = 1; i < csoundChannel.mix * 4; i++) {
-       pg.box(size + i*size);
+     for(let i = 1; i < csoundChannel.mix * guiControl.boxRepeat; i++) {
+       pg.push();
+       pg.rotateX(size*i);
+       pg.box(size * i * 2);
+       pg.pop();
      }
 
      canvas.image(pg, 0, 0, pg.width, pg.height);

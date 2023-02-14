@@ -17,6 +17,8 @@ gkRunning init 0
 gkRunning chnexport "gkRunning", 3, 2, i(gkRunning), 0, 1
 gkLimit init 27
 gkLimit chnexport "gkLimit", 3, 2, i(gkLimit), 1, 32
+gkRatio init 2
+gkRatio chnexport "gkRatio", 3, 2, i(gkRatio), 1, 7
 
 
 gkMix chnexport "gkMix", 3, 3
@@ -101,16 +103,15 @@ instr _fm_pad
   klfo oscil  .4, 1.3
   klfo2 oscil .4, 1.6
 
-  iratio = int(random(2,4))
   indx = 4
-  a1 foscil kenv, cpsmidinn(ifreq1), 1, iratio, kenv*indx+klfo, -1
-  a2 foscil kenv, cpsmidinn(ifreq2), 1, iratio, kenv*indx+klfo, -1
-  a3 foscil kenv, cpsmidinn(ifreq3), 1, iratio, kenv*indx+klfo, -1
-  a4 foscil kenv, cpsmidinn(ifreq4), 1, iratio, kenv*indx+klfo, -1
-  a5 foscil kenv, cpsmidinn(ifreq1)+4, 1, iratio, kenv*indx+klfo2, -1
-  a6 foscil kenv, cpsmidinn(ifreq2)+4, 1, iratio, kenv*indx+klfo2, -1
-  a7 foscil kenv, cpsmidinn(ifreq3)+4, 1, iratio, kenv*indx+klfo2, -1
-  a8 foscil kenv, cpsmidinn(ifreq4)+4, 1, iratio, kenv*indx+klfo2, -1
+  a1 foscil kenv, cpsmidinn(ifreq1), 1, gkRatio, kenv*indx+klfo, -1
+  a2 foscil kenv, cpsmidinn(ifreq2), 1, gkRatio, kenv*indx+klfo, -1
+  a3 foscil kenv, cpsmidinn(ifreq3), 1, gkRatio, kenv*indx+klfo, -1
+  a4 foscil kenv, cpsmidinn(ifreq4), 1, gkRatio, kenv*indx+klfo, -1
+  a5 foscil kenv, cpsmidinn(ifreq1)+4, 1, gkRatio, kenv*indx+klfo2, -1
+  a6 foscil kenv, cpsmidinn(ifreq2)+4, 1, gkRatio, kenv*indx+klfo2, -1
+  a7 foscil kenv, cpsmidinn(ifreq3)+4, 1, gkRatio, kenv*indx+klfo2, -1
+  a8 foscil kenv, cpsmidinn(ifreq4)+4, 1, gkRatio, kenv*indx+klfo2, -1
 
   al = (a1 + a2 + a3 + a4)*0.1
   ar = (a5 + a6 + a7 + a8)*0.1

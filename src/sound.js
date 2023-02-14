@@ -11,6 +11,7 @@ export const guiControl = {
   run : false,
   bpm: 140,
   count: 27,
+  ratio: 2,
   boxColor: "#ffb5cd",
   textColor: "#fff"
 };
@@ -30,6 +31,11 @@ gui.add(guiControl, 'count', 1, 32).name('count').step(1).onChange((v) => {
 });
 gui.addColor(guiControl, 'boxColor');
 gui.addColor(guiControl, 'textColor');
+gui.add(guiControl, 'ratio', 1, 7).name('FM Ratio').step(.1).onChange((v) => {
+  if(csound) {
+    csound.setControlChannel("gkRatio", v);
+  }
+});
 
 
 // ================================================================================

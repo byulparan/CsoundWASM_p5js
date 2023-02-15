@@ -27,15 +27,12 @@
      let time = p5.millis() * 0.001;
 
      p5.background(0);
-     canvas.background(0, 50);
+     canvas.background(0, 30);
 
      pg.clear();
      pg.perspective(45.0, p5.width/ p5.height, .01, 100.0);
      pg.camera(0.0, 0.0, 10, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
-     pg.noFill();
-     pg.strokeWeight(2.);
-     pg.stroke(guiControl.boxColor);
      
      pg.rotateX(p5.cos(0.4*time) * p5.TAU);
      pg.rotateY(p5.cos(0.4*time) * p5.TAU);
@@ -43,13 +40,18 @@
 
      let size = csoundChannel.mix * 2;
 
+     
+     pg.strokeWeight(3.);
+
      for(let i = 1; i < csoundChannel.mix * guiControl.boxRepeat; i++) {
        pg.push();
        pg.rotateX(size*i);
+       pg.fill(100, i * 50, 100.0, csoundChannel.kickMix*2000);
+       pg.stroke(100, i * 50, 100.0);
        pg.box(size * i * 2);
        pg.pop();
      }
-
+     
      canvas.image(pg, 0, 0, pg.width, pg.height);
      p5.image(canvas, 0, 0, p5.width, p5.height);
 

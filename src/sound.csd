@@ -50,7 +50,7 @@ instr schedule
   icount = p4
   if icount % 2 == 0 then
     schedule "_fm_beat", 0, 0.25 * int(random(1,4)), 140, 0.5 * int(random(1,3)), 1.2, 0.5, 0.0
-    if random(0,1) > 0.7 then
+    if random(0,1) > 0.5 then
       schedule "_fm_beat", (1/i(gkTempo)) * 1 , .125, 240, 1 * int(random(1,6)), 1.4, 0.5 + random(-0.5,0.5), random(0, 0.3)
     endif
   endif
@@ -85,7 +85,7 @@ instr _fm_beat
   kenv linseg 0.2, p3*0.9,0.2, p3*0.1, 0.0
   kcps linseg p4, p3*0.2, 80
   asig foscili kenv, kcps, 1, p5, p6, -1
-  al,ar pan2 asig*0.5, p7
+  al,ar pan2 asig*0.7, p7
   outs al, ar
   chnmix al * p8, "reverbL"
   chnmix ar * p8, "reverbR"
@@ -113,8 +113,8 @@ instr _fm_pad
   a7 foscil kenv, cpsmidinn(ifreq3)+4, 1, gkRatio, kenv*indx+klfo2, -1
   a8 foscil kenv, cpsmidinn(ifreq4)+4, 1, gkRatio, kenv*indx+klfo2, -1
 
-  al = (a1 + a2 + a3 + a4)*0.1
-  ar = (a5 + a6 + a7 + a8)*0.1
+  al = (a1 + a2 + a3 + a4)*0.07
+  ar = (a5 + a6 + a7 + a8)*0.07
   
   outs al, ar
   chnmix al*0.2, "reverbL"

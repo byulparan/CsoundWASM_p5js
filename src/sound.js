@@ -13,7 +13,6 @@ export const guiControl = {
   count: 27,
   ratio: 2,
   boxRepeat: 4,
-  boxColor: "#ffb5cd",
   textColor: "#fff"
 };
 
@@ -36,7 +35,6 @@ gui.add(guiControl, 'ratio', 1, 7).name('FM Ratio').step(.1).onChange((v) => {
   }
 });
 gui.add(guiControl, 'boxRepeat', 4, 30).name('Box Repeat').step(1);
-gui.addColor(guiControl, 'boxColor').name('Box Color');
 gui.addColor(guiControl, 'textColor').name('Text Color');
 
 
